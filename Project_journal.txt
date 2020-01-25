@@ -1,0 +1,6 @@
+3. Quad Tree 08:38 25/01/2020
+	( ) Sprawdzić różnice pomiędzy programami
+		( ) Tests
+		( ) Implicit geometry
+		( ) main
+	( )
