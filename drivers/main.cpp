@@ -7,7 +7,7 @@ using ImplicitGeometryPtr = std::shared_ptr<implicit::AbsImplicitGeometry>;
 #include "Union.hpp"
 #include "Difference.hpp"
 #include "Intersection.hpp"
-
+//this is new main
 namespace implicit
 {
 	using ImplicitGeometryPtr = std::shared_ptr<implicit::AbsImplicitGeometry>;
