@@ -5,8 +5,8 @@ namespace implicit
 	class AbsImplicitGeometry
 	{
 	public:
-		virtual bool inside(double x, double y) const;
 		virtual ~AbsImplicitGeometry();
+
+		virtual bool inside(double x, double y) const = 0;
 	};
-	using ImplicitGeometryPtr = std::shared_ptr<implicit::AbsImplicitGeometry>;
 }

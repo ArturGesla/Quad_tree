@@ -1,13 +1,12 @@
-#include <iostream>
 #include "AbsImplicitGeometry.hpp"
 #include "Circle.hpp"
 #include "Rectangle.hpp"
-using ImplicitGeometryPtr = std::shared_ptr<implicit::AbsImplicitGeometry>;
 #include "AbsOperation.hpp"
 #include "Union.hpp"
 #include "Difference.hpp"
 #include "Intersection.hpp"
-//this is new main
+
+#include <iostream>
 namespace implicit
 {
 	using ImplicitGeometryPtr = std::shared_ptr<implicit::AbsImplicitGeometry>;
@@ -47,20 +46,17 @@ namespace implicit
 }
 int main( )
 {
-    implicit::ImplicitGeometryPtr circle1( new implicit::Circle( 0.0, 0.0, 1.06 ) );
+    //implicit::ImplicitGeometryPtr circle1( new implicit::Circle( 0.0, 0.0, 1.06 ) );
 	//sample(*circle1);
-    implicit::ImplicitGeometryPtr rectangle1( new implicit::Rectangle( -1.0, -1.0, 1.0, 1.0 ) );
-	//sample(*rectangle1);
-    implicit::ImplicitGeometryPtr intersection( new implicit::Intersection( circle1, rectangle1 ) );
-	//sample(*intersection);
-    implicit::ImplicitGeometryPtr rectangle2( new implicit::Rectangle( -0.1, -1.5, 0.1, 1.5 ) );
-	//sample(*rectangle2);
-    implicit::ImplicitGeometryPtr union1( new implicit::Union( intersection, rectangle2 ) );
-	//sample(*union1);
-    implicit::ImplicitGeometryPtr circle2( new implicit::Circle( 0.0, 0.0, 0.65 ) );
-	//sample(*circle2);
-    implicit::Difference root( union1, circle2 );
-	sample(root);
+	auto circle1 = std::make_shared<implicit::Circle>(0.0, 0.0, 1.06);
+	auto rectangle1 = std::make_shared<implicit::Rectangle>(-1.0, -1.0, 1.0, 1.0);
+	auto intersection = std::make_shared<implicit::Intersection>(circle1, rectangle1);
+	auto rectangle2 = std::make_shared<implicit::Rectangle>(-0.1, -1.5, 0.1, 1.5);
+	auto union1 = std::make_shared<implicit::Union>(intersection, rectangle2);
+	auto circle2 = std::make_shared<implicit::Circle>(0.0, 0.0, 0.65);
+	auto root = std::make_shared<implicit::Difference>(union1, circle2);
+    //implicit::Difference root( union1, circle2 );
+	//sample(root);
 	/*
     std::cout << "Point (0, 0): " << root.inside( 0.0, 0.0 ) << std::endl;
     std::cout << "Point (1, 0): " << root.inside( 0.0, 1.0 ) << std::endl;

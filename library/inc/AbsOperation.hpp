@@ -2,6 +2,8 @@
 #include "AbsImplicitGeometry.hpp"
 namespace implicit
 {
+	using ImplicitGeometryPtr = std::shared_ptr<implicit::AbsImplicitGeometry>;
+
 	class AbsOperation : public AbsImplicitGeometry
 	{
 	public:
