@@ -1,3 +1,4 @@
+#include "QuadTree.hpp"
 #include "AbsImplicitGeometry.hpp"
 #include "Circle.hpp"
 #include "Rectangle.hpp"
@@ -7,12 +8,16 @@
 #include "Intersection.hpp"
 
 #include <iostream>
+
+
+
+
 namespace implicit
 {
 	using ImplicitGeometryPtr = std::shared_ptr<implicit::AbsImplicitGeometry>;
 	void sample(AbsImplicitGeometry& geometry) //prints ONE geometry object
 	{
-		double bound = 2;
+		double bound = 1.58;
 		double xmin = -bound;
 		double xmax = bound;
 		double ymin = -bound;
@@ -42,11 +47,11 @@ namespace implicit
 			std::cout << std::endl;
 		}
 	}
-
 }
-int main( )
+
+int main()
 {
-    //implicit::ImplicitGeometryPtr circle1( new implicit::Circle( 0.0, 0.0, 1.06 ) );
+	//implicit::ImplicitGeometryPtr circle1( new implicit::Circle( 0.0, 0.0, 1.06 ) );
 	//sample(*circle1);
 	auto circle1 = std::make_shared<implicit::Circle>(0.0, 0.0, 1.06);
 	auto rectangle1 = std::make_shared<implicit::Rectangle>(-1.0, -1.0, 1.0, 1.0);
@@ -55,14 +60,20 @@ int main( )
 	auto union1 = std::make_shared<implicit::Union>(intersection, rectangle2);
 	auto circle2 = std::make_shared<implicit::Circle>(0.0, 0.0, 0.65);
 	auto root = std::make_shared<implicit::Difference>(union1, circle2);
-    //implicit::Difference root( union1, circle2 );
+	//implicit::Difference root( union1, circle2 );
 	//sample(root);
+
+	implicit::Rectangle rect(0.1,0.1,1.1,1.1);
+	sample(rect);
+	implicit::ImplicitGeometryPtr rect_ptr(new implicit::Rectangle(0.1, 0.1, 1.1, 1.1));
 	/*
-    std::cout << "Point (0, 0): " << root.inside( 0.0, 0.0 ) << std::endl;
-    std::cout << "Point (1, 0): " << root.inside( 0.0, 1.0 ) << std::endl;
-    std::cout << "Point (1, 0): " << root.inside( 1.1, 0.0 ) << std::endl;
-    // ... 
-    // (to be used in the quad tree example)
+	std::cout << "Point (0, 0): " << root.inside( 0.0, 0.0 ) << std::endl;
+	std::cout << "Point (1, 0): " << root.inside( 0.0, 1.0 ) << std::endl;
+	std::cout << "Point (1, 0): " << root.inside( 1.1, 0.0 ) << std::endl;
+	// ...
+	// (to be used in the quad tree example)
 	*/
+	implicit::CellType cell{ implicit::Bounds{-1.58, 1.58 },implicit::Bounds{-1.58,1.58} };
+	implicit::generateQuadTree(*root, cell, 10, "quad_tree.vtk");
     return 0;
 }

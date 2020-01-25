@@ -3,4 +3,5 @@
 		(#) Tests
 		(#) main -> (#) pozamieniac deklaracje na auto
 		(#) library (lets say)
- 	( ) 
+ 	( ) Napisac funkcje is cut boundary
+	( )  
