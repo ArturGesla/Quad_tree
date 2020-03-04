@@ -125,7 +125,7 @@ namespace implicit
 	{
 		if (level_ < maxLevel)
 		{
-			bool isCut = detail::isCutByBoundary(cell_, geometry, 7);
+			bool isCut = detail::isCutByBoundary(cell_, geometry, 10);
 
 			if (isCut)
 			{
